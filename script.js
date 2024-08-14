@@ -22,6 +22,11 @@ function addBookToLibrary(book) {
 addBookToLibrary(theHobbit);
 addBookToLibrary(theAwesomeBook);
 
+function clearDisplay() {
+    const display = document.querySelector(".display");
+    display.replaceChildren();
+}
+
 function displayBooks() {
     const display = document.querySelector(".display");
     for (const book of myLibrary) {
@@ -86,6 +91,13 @@ newBookBtn.addEventListener("click", () => {
     const addBookBtn = document.createElement("button");
     addBookBtn.setAttribute("class", "add-book");
     addBookBtn.textContent = "Add";
+    addBookBtn.addEventListener("click", () => {
+        const book = new Book(titleField.value, authorField.value,
+            parseInt(pagesField.value), readRadioBtn.checked);
+        myLibrary.push(book);
+        clearDisplay();
+        displayBooks();
+    });
 
     newBookForm.append(titleLabel, titleField, authorLabel, authorField,
         pagesLabel, pagesField, readRadioBtn, readLabel, notReadRadioBtn,
