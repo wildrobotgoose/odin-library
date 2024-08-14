@@ -11,3 +11,7 @@ body {
     padding: 50px;
     border: black solid 2px;
 }
+
+.new-book {
+    text-transform: uppercase;
+}
