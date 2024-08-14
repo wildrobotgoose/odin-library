@@ -29,12 +29,20 @@ function clearDisplay() {
 
 function displayBooks() {
     const display = document.querySelector(".display");
-    for (const book of myLibrary) {
+    for (let i = 0; i < myLibrary.length; i++) {
         const bookDiv = document.createElement("div");
         bookDiv.style.width = "200px";
         bookDiv.style.height = "200px";
         bookDiv.style.border = "green solid 2px";
-        bookDiv.textContent = book.getInfo();
+        bookDiv.textContent = myLibrary[i].getInfo();
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.addEventListener("click", () => {
+            myLibrary.splice(i, 1);
+            clearDisplay();
+            displayBooks();
+        });
+        bookDiv.appendChild(removeBtn);
         display.appendChild(bookDiv);
     }
 }
