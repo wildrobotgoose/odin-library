@@ -42,7 +42,12 @@ function displayBooks() {
 displayBooks();
 
 const newBookBtn = document.querySelector(".new-book");
+let newBookFormVisible = false;
 newBookBtn.addEventListener("click", () => {
+    if (newBookFormVisible) {
+        return;
+    }
+
     const newBookForm = document.createElement("div");
 
     const titleField = document.createElement("input");
@@ -104,4 +109,6 @@ newBookBtn.addEventListener("click", () => {
         notReadLabel, addBookBtn);
 
     newBookBtn.insertAdjacentElement("afterend", newBookForm);
+
+    newBookFormVisible = true;
 });
