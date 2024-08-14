@@ -30,11 +30,13 @@ function clearDisplay() {
 function displayBooks() {
     const display = document.querySelector(".display");
     for (let i = 0; i < myLibrary.length; i++) {
+        const book = myLibrary[i];
         const bookDiv = document.createElement("div");
         bookDiv.style.width = "200px";
         bookDiv.style.height = "200px";
         bookDiv.style.border = "green solid 2px";
-        bookDiv.textContent = myLibrary[i].getInfo();
+        bookDiv.textContent = book.getInfo();
+
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.addEventListener("click", () => {
@@ -43,6 +45,16 @@ function displayBooks() {
             displayBooks();
         });
         bookDiv.appendChild(removeBtn);
+
+        const readBtn = document.createElement("button");
+        readBtn.textContent = book.read ? "Unread" : "Read";
+        readBtn.addEventListener("click", () => {
+            book.read = !book.read;
+            clearDisplay();
+            displayBooks();
+        });
+        bookDiv.appendChild(readBtn);
+
         display.appendChild(bookDiv);
     }
 }
